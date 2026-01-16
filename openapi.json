@@ -1,0 +1,452 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "QuickMagic",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "https://reels.adsteam.xyz"
+    },
+    {
+      "url": "{Url trả về presigned url upload file}"
+    }
+  ],
+  "paths": {
+    "/auth/signin": {
+      "post": {
+        "summary": "Login",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1ODcwLCJpYXQiOjE3Njg1MzUyODIsImV4cCI6MTc2OTE0MDA4Mn0.ce2ENo2usBir_-ZjAyNa6lA3JDfu8lIL_ELWaish1z8"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Login"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "email": "letranglan111@gmail.com",
+                "password": "785571@Lan"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/voice-v1": {
+      "post": {
+        "summary": "Task Voice",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Voice"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "voice": {
+                    "type": "string"
+                  },
+                  "style": {
+                    "type": "string"
+                  },
+                  "speed": {
+                    "type": "integer"
+                  },
+                  "Voice_intensity": {
+                    "type": "integer"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "folder_id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "text": "Chỉ điền các thông tin bạn muốn thể hiện trên CV. Không thêm vào những nội dung không liên quan tới vị trí công việc đang ứng tuyến.",
+                "voice": "Khanh Chi",
+                "style": "normal",
+                "speed": 1,
+                "Voice_intensity": 0,
+                "model": "v1",
+                "folder_id": "2lszkP"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/list-history-voice": {
+      "post": {
+        "summary": "Lịch sử Voice",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Voice"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer"
+                  },
+                  "limit": {
+                    "type": "integer"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "page": 1,
+                "limit": 50,
+                "status": "all"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/list-voice": {
+      "get": {
+        "summary": "Danh sách voice",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {},
+            "example": "v1"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {},
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Voice"
+        ],
+        "description": "Sử dụng voice demo sẽ bắt đầu với https://download.quickmagic.vn/quick-studio Ví dụ: https://download.quickmagic.vn/quick-studio/ar-TN-HediNeural.mp3EndFragment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/images": {
+      "post": {
+        "summary": "Task Tạo ảnh",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Image"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "aspect_ratio": {
+                    "type": "string",
+                    "format": "style"
+                  },
+                  "number_images": {
+                    "type": "integer"
+                  },
+                  "folder_id": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "aspect_ratio": "9:16",
+                "number_images": 1,
+                "folder_id": "2lszkP",
+                "content": "con chó",
+                "type": "text-to-image"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/list-history-images": {
+      "post": {
+        "summary": "Lịch sử Tạo ảnh",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Image"
+        ]
+      }
+    },
+    "/ai/clothing": {
+      "post": {
+        "summary": "Task Thử đồ (cả bộ)",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Image"
+        ]
+      }
+    },
+    "/v1/history-clothing": {
+      "post": {
+        "summary": "Lịch sử thử đồ",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Image"
+        ]
+      }
+    },
+    "/v1/get-presigned-url": {
+      "post": {
+        "summary": "Tạo Presigned Url Upload file",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Video subtitle"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filename": {
+                    "type": "string"
+                  },
+                  "contentType": {
+                    "type": "string"
+                  },
+                  "fileSize": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "example": {
+                "filename": "Powering_an_E-Bike_using_Disposable_Vape_Batteries_720P.mp4",
+                "contentType": "video/mp4",
+                "fileSize": 104071321
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "put": {
+        "summary": "Upload file",
+        "responses": {},
+        "tags": [
+          "Video subtitle"
+        ]
+      }
+    },
+    "/v1/confirm-upload": {
+      "post": {
+        "summary": "Confirm Upload & Task tạo subtitle",
+        "responses": {},
+        "tags": [
+          "Video subtitle"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": "{\r\n    \"history_id\": 13872,\r\n    \"key\": \"quick-magic-subtitle/video-1768556740642-nikfw75bm.mp4\",             // Key file tạo từ POST presigned url\r\n    \"title\": \"Powering_an_E-Bike_using_Disposable_Vape_Batteries_720P.mp4\",      // File name video\r\n    \"volume\": \"0.0\",                                                             // Volumne                                              \r\n    \"language_video\": \"vi-VN\",                                                   // Language video\r\n    \"language_translate\": \"Vietnamese\",                                          // Language need translate  (Không dịch = \"khong_dich\")\r\n    \"font_size\": 0,                                                              // Font size (0 = Mặc định)\r\n    \"settings_style\": {                                                          // Lấy từ API style text\r\n        \"font\": 9,\r\n        \"size\": 0,\r\n        \"styleName\": \"DEVIN\",\r\n        \"styleEffectId\": 1,\r\n        \"textStyle\": 0,\r\n        \"textEffect\": 8,\r\n        \"styleFont\": 14,\r\n        \"color\": \"#7a5c5c\",\r\n        \"bgColor\": \"#FF0000\",                                   // \r\n        \"position\": \"bottom\"                                    // Vị trí subtitle\r\n    },\r\n    \"textColor\": \"#7a5c5c\",                                     // Text color subtitle\r\n    \"textBgColor\": \"\",\r\n    \"model_translate\": \"flash\",                                 // Model dịch thuật\r\n    \"platform\": \"quick-magic\",\r\n    \"folder_save\": \"C:\\\\Users\\\\admin\\\\Downloads\\\\Test\",\r\n    \"extract_only\": false,\r\n    \"is_subtitle\": true,\r\n    \"enable_voice_dubbing\": false,                              // Bật tắt thêm voice\r\n    \"voice_id\": null,                                           // Lấy từ API Danh sách voice\r\n    \"voice_model\": null,                                        // v1/v2\r\n    \"voice_speed\": null,                                        // [-5, 10]\r\n    \"voice_intensity\": null,                                    // Cao độ [-5, -10]\r\n    \"speed_up_audio\": false,                                    // \r\n    \"volume_voice\": null,                                       // Âm lượng voie \r\n    \"zoom_video\": 1,                                            // Zoom video  [0, 2]\r\n    \"lat_video\": false                                          // Lật video\r\n}"
+            }
+          }
+        }
+      }
+    },
+    "/v1/history-video-subtitle": {
+      "get": {
+        "summary": "Lịch sử video subtitle",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {},
+            "example": "1"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {},
+            "example": "20"
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {},
+            "example": "subtitle_auto"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {},
+            "example": "all"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Video subtitle"
+        ]
+      }
+    },
+    "/v1/list-style-text": {
+      "get": {
+        "summary": "Danh sách style text",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{ACCESS_TOKEN}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Video subtitle"
+        ]
+      }
+    }
+  }
+}
