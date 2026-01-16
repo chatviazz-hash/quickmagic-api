@@ -47,8 +47,8 @@
                 }
               },
               "example": {
-                "email": "letranglan111@gmail.com",
-                "password": "785571@Lan"
+                "email": "email",
+                "password": "password"
               }
             }
           }
